@@ -67,7 +67,7 @@ function ProfileScreen(props) {
             </li>
             <li>
               <label htmlFor="password">Password</label>
-              <input value={password} type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
+              <input defaultValue={password} type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
               </input>
             </li>
 

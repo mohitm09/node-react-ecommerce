@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { signin } from '../actions/userActions';
+import { signin, signinGoogle } from '../actions/userActions';
+import {GoogleLogin} from '@react-oauth/google';
+import {GoogleOAuthProvider} from "@react-oauth/google"
 
 function SigninScreen(props) {
 
@@ -23,10 +25,16 @@ function SigninScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(email, password));
+    console.log(userInfo)
+    
+  }
+  function handleGoogleLoginSuccess(tokenResponse) {
 
+    dispatch(signinGoogle(tokenResponse))
+    props.history.push(redirect);
   }
   return <div className="form">
-    <form onSubmit={submitHandler} >
+    <form >
       <ul className="form-container">
         <li>
           <h2>Sign-In</h2>
@@ -48,8 +56,14 @@ function SigninScreen(props) {
           </input>
         </li>
         <li>
-          <button type="submit" className="button primary">Signin</button>
+          <button type="submit" onClick={submitHandler} className="button primary">Signin</button>
         </li>
+        <GoogleOAuthProvider
+        clientId={`944053653596-56n9u9ebbtodmmb3ubrgk4mti2fbmpcg.apps.googleusercontent.com`}>
+        <GoogleLogin onSuccess={handleGoogleLoginSuccess}>
+          
+        </GoogleLogin>
+        </GoogleOAuthProvider>
         <li>
           New to amazona?
         </li>

@@ -14,8 +14,14 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import OrdersScreen from './screens/OrdersScreen';
+import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import Cookie from 'js-cookie';
+import { USER_LOGOUT} from "./constants/userConstants";
 
 function App() {
+  
+  
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
 
@@ -25,13 +31,15 @@ function App() {
   const closeMenu = () => {
     document.querySelector('.sidebar').classList.remove('open');
   };
+
   return (
+    
     <BrowserRouter>
       <div className="grid-container">
         <header className="header">
           <div className="brand">
             <button onClick={openMenu}>&#9776;</button>
-            <Link to="/">amazona</Link>
+            <Link to="/"><span className='txt'>FoodEZ</span></Link>
           </div>
           <div className="header-links">
             <a href="cart.html">Cart</a>
@@ -54,17 +62,21 @@ function App() {
           </div>
         </header>
         <aside className="sidebar">
-          <h3>Shopping Categories</h3>
+          <h3><span className='shop'>Shopping Categories</span></h3>
           <button className="sidebar-close-button" onClick={closeMenu}>
             x
           </button>
           <ul className="categories">
             <li>
-              <Link to="/category/Pants">Pants</Link>
+              <Link to="/category/Friuts">Fruits</Link>
             </li>
 
             <li>
-              <Link to="/category/Shirts">Shirts</Link>
+              <Link to="/category/Vegetables">Vegetables</Link>
+            </li>
+
+            <li>
+              <Link to="/category/Dairy">Dairy</Link>
             </li>
           </ul>
         </aside>

@@ -8,7 +8,7 @@ import productRoute from './routes/productRoute';
 import orderRoute from './routes/orderRoute';
 import uploadRoute from './routes/uploadRoute';
 
-const mongodbUrl = config.MONGODB_URL;
+const mongodbUrl = "mongodb://127.0.0.1:27017/grocery"
 mongoose
   .connect(mongodbUrl, {
     useNewUrlParser: true,
